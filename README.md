@@ -1,7 +1,7 @@
 # Personal_Website
 Code for my personal website
 
-To visit it, just search Josiah McMenamy on google, or use this link: https://web.mit.edu/josiahmc/www/
+To visit it, just search "Josiah McMenamy" on google, or use this link: https://web.mit.edu/josiahmc/www/
 
 This website is hosted with MIT, more info here: http://kb.mit.edu/confluence/pages/viewpage.action?pageId=3907090 
 
