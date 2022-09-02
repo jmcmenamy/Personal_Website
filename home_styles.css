@@ -1,0 +1,433 @@
+body {
+  background-color: #f5f0f0;
+  font-family: Roboto, Arial, sans-serif;
+  margin-left: 0;
+  margin-right: 0;
+}
+@font-face {
+  font-family: 'MyWebFont';
+  src: url('Argon.otf') format('truetype');
+}
+.title {
+  font-family: MyWebFont, Roboto;
+  text-align: center;
+  font-size: 9vw;
+  font-weight: lighter;
+  margin-bottom: 0;
+}
+div#intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+p#intro {
+  font-size: 2.5vw;
+  margin-right: 0.6rem;
+}
+
+/* Scales the cube based on the user's device*/
+:root {
+  --cubeSize: 30vw;
+  --p: scale3d(1,1,1);
+  --i: 0;
+  --j: 0;
+  --a: 0;
+}
+.start {
+  display: flex;
+  margin-left: 11vw;
+  margin-right: 11vw;
+  margin-top: 5vw;
+  margin-bottom: 5vw;
+  border: 0.3vw solid rgba(163, 31, 52);
+  border-radius: 3vw;
+  background-color: rgb(185 51 51 / 12%);
+  box-shadow: 0 0 1vw 0.6vw rgb(0 0 0 / 20%);
+}
+.start, .start img {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/*
+.start ::selection {
+  background-color: none;
+  color: currentColor;
+}*/
+.container {
+  padding: 0;
+  flex-basis: var(--cubeSize);
+  flex-shrink: 0;
+  flex-grow: 0;
+  height: var(--cubeSize);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: calc(var(--cubeSize)*50/15);
+  perspective-origin: top left;
+  /*transform: translateY(-1vw); I read that transform should only be used for animating position*/
+  position: relative;
+  top: -1vw;
+}
+
+/* The child element, with 3D tranforms preserved */
+.cube {
+  font-size: calc(var(--cubeSize)/15.7894736842);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  animation: grow 1s ease-in 0.1s forwards,
+  cubeRotate 7s linear 5.5s infinite forwards;
+}
+@keyframes grow {
+  to {
+    width: calc(var(--cubeSize)/2);
+    height: calc(var(--cubeSize)/2);
+  }
+}
+
+@keyframes cubeRotate {
+  to { transform: rotateY(-360deg); }
+}
+@keyframes cube_rotate {
+  from {
+    transform: var(--p) rotateY(0deg);
+  }
+  to {
+    transform: var(--p) rotateY(-360deg);
+  }
+}
+div.side p, div.side img {
+  opacity: 0;
+  animation: appear 1.5s ease-in 4s forwards;
+}
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+
+/* The sides of the cube, absolutely positioned */
+.side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 0%;
+  height: 0%;
+  opacity: 0.9;
+  border: 0.15vw solid black;
+  border-radius: 0.5vw;
+  background-color: rgba(163, 31, 52, 0.6);
+  box-shadow: 0 0 8vw #000 inset;
+  text-align: center;
+  color: white;
+  vertical-align: middle;
+}
+p {
+  margin-bottom: 0;
+}
+.bottom {
+  height: 100%;
+  width: 100%;
+}
+.left, .right, .front, .back {
+  opacity: 0;
+  width: 100%;
+  animation: raise 1s ease-in 1.2s forwards,
+  appear 0.1s ease-in 1.1s forwards;
+}
+
+@keyframes raise {
+  to {
+    height: 100%;
+  }
+}
+
+.top {
+  width: 0%;
+  height: 0%;
+  opacity: 0;
+  bottom: 60%;
+  animation: grow_top 1s ease-in 2.2s forwards,
+  appear 0.1s ease-in 2.2s forwards,
+  move_down 0.8s ease-in 3.2s forwards;
+}
+@keyframes grow_top {
+  to {
+    bottom: 10%;
+    width: 100%;
+    height: 100%;
+  }
+}
+@keyframes move_down {
+  from {
+    bottom: 10%;
+  }
+  to {
+    bottom: 0%;
+  }
+}
+
+/* Orient the sides in 3d space */
+.front {
+  transform: translateZ(calc(var(--cubeSize)/4));
+}
+.back {
+  transform: rotateY(180deg) translateZ(calc(var(--cubeSize)/4));
+}
+.left {
+  transform: rotateY(90deg) translateZ(calc(var(--cubeSize)/4));
+}
+.right {
+  transform: rotateY(-90deg) translateZ(calc(var(--cubeSize)/4));
+}
+.top {
+  transform: rotateX(90deg) translateZ(calc(var(--cubeSize)/4));
+}
+.bottom {
+  transform: rotateX(-90deg) translateZ(calc(var(--cubeSize)/4));
+}
+
+/* #ihtfp */
+#timthebeaver {
+  height: 100%;
+}
+/* Formats the Resume and Cover Letter. */
+
+.page {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  display: block;
+  overflow: hidden;
+  width: 65vw;
+  height: 84.11764706vw;
+  left: 17.5%;
+  position: absolute;
+  border: 0.2vw solid black;
+  border-radius: 5%;
+  box-shadow: 0 0 1vw 0.1vw rgb(0 0 0 / 40%);
+}
+
+iframe, .iframe_cover, .iframe_background, .page img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  position: absolute;
+  transition: opacity 700ms;
+}
+
+.iframe_background {
+  box-shadow: none;
+  z-index: -2;
+  background-color: white;
+}
+.iframe_cover {
+  z-index: 2;
+}
+.left_side {
+  z-index: 2;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 4%;
+}
+.right_side {
+  z-index: 2;
+  background-color: white;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 4%;
+}
+.top_side {
+  z-index: 2;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 4%;
+
+}
+.bottom_side {
+  z-index: 2;
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 4%;
+
+}
+
+.viewer button {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  border-style: solid;
+  color: black;
+  border-width: 0.2vw;
+  border-color: black;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.5vw;
+  width: 11vw;
+  height: 4vw;
+  font-size: 1.5vw;
+  border-radius: 0.9vw;
+  cursor: pointer;
+  background-color: #c8e3f3;
+  transition: color 700ms;
+}
+.viewer button span {
+  z-index: 3;
+  position: relative;
+}
+.clicked {
+  color: white !important;
+}
+div#intro button {
+  border-style: solid;
+  color: black;
+  border-width: 0.2vw;
+  border-color: black;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.5vw;
+  width: max-content;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  height: 4vw;
+  font-size: 1.5vw;
+  border-radius: 0.9vw;
+  background-color: #c8e3f3;
+  cursor: pointer;
+}
+.viewer button::before {
+  content: '';
+  border-radius: 0.9vw;
+  position: absolute;
+  top: -5%; left: -5%;
+  width: 110%; height: 110%;
+  background: #0f469a;
+  z-index: 2;
+  -webkit-transform:scale(0);
+      -ms-transform:scale(0);
+          transform:scale(0);
+  -webkit-transition: -webkit-transform .5s;
+          transition: ease-in transform .5s;
+}
+.clicked::before {
+  -webkit-transform: scale(1) !important;
+      -ms-transform: scale(1) !important;
+          transform: scale(1) !important;
+}
+.viewer button:hover, div#intro button:hover {
+  box-shadow: 0 0 0.5vw black;
+}
+.viewer {
+  text-align: center;
+}
+
+div#contact {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 30%;
+  top: 35%;
+  left: 0;
+  width: 5%;
+  justify-content: space-evenly;
+  border: 0.3vw solid;
+  border-width: 0.3vw 0.3vw 0.3vw 0;
+  border-radius: 0 1vw 1vw 0;
+  background-color: #c8e3f3;
+  box-shadow: 0 0 1vw 0.6vw rgb(0 0 0 / 20%);
+  z-index: 1;
+}
+div#contact > * {
+  height: 20%;
+  display: flex;
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 1;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  margin-right: 0.2vw;
+  margin-left: 0.2vw;
+  transition: transform 0.3s;
+}
+div#contact svg {
+  color: black;
+}
+.btn:focus, .btn:active {
+  /*box-shadow: none !important;*/
+}
+div#contact .btn:hover {
+  transform: translateY(-0.2vw);
+}
+.tooltipcustom .tooltiptextcustom {
+  visibility: hidden;
+  width: max-content;
+  background-color: #333333;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.4vw;
+  padding: 0.5vw;
+  position: absolute;
+  z-index: 2;
+  left: 100%;
+}
+
+.tooltipcustom .tooltiptextcustom::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -0.4vw;
+  border-width: 0.4vw;
+  border-style: solid;
+  border-color: transparent #333333 transparent transparent;
+}
+.tooltipcustom:hover .tooltiptextcustom {
+  visibility: visible;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::after, *::before {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0ms !important;
+  }
+  canvas {
+    visibility: hidden;
+  }
+}
+/* Deleted Bootstrap styles 
+*,::after,::before{box-sizing:border-box}
+*/
